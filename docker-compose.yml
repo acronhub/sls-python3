@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./docker/serverless
+      args: 
+        - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+        - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+        - SERVERLESS_VERSION=$SERVERLESS_VERSION
+    tty: true
+    stdin_open: true
+    env_file:
+      - .env
+    working_dir: /apps
+    volumes:
+      - ./apps:/apps
